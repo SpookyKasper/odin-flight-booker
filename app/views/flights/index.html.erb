@@ -1,0 +1,22 @@
+<h1>Amazing Flights</h1>
+
+<%= form_with url: '/flights', method: :get do |form| %>
+  <%# Make an (almost) vanilla html form for the departures %>
+  <label for="departure_airport">Departure Airport:</label>
+  <select name="departure_airport" id="departure_airport">
+    <% @airports.each do |airport| %>
+      <option value="<%= airport.id %>"><%= airport.code %></option>
+    <% end %>
+  </select><br>
+  <%# Make a Rails-way form for the arrivals %>
+  <%= form.label :arrival_airport %>
+  <%= form.select :arrival_airport, @airport_options %><br>
+
+  <%= form.label :passenger_num %>
+  <%= form.select :passenger_num, @passenger_num_options %><br>
+
+  <%= form.label :start, 'Departure date' %>
+  <%= form.select(:start, @departure_dates) %><br>
+
+  <%= form.submit 'Search Flight'%>
+<% end %>
