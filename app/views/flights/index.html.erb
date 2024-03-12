@@ -20,3 +20,7 @@
 
   <%= form.submit 'Search Flight'%>
 <% end %>
+
+<% @available_flights.each do |flight| %>
+  <%= flight %>
+<% end %>

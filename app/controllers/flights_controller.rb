@@ -5,6 +5,10 @@ class FlightsController < ApplicationController
     @flights = Flight.all
     @passenger_num_options = (1..4).to_a
     @departure_dates = Flight.pluck(:start).map { |dt| datetime_to_date(dt) }
+    @available_flights = Flight.where(
+      departure_airport_id: params[:departure_airport],
+      arrival_airport_id: params[:arrival_airport]
+    )
   end
 
   def show
