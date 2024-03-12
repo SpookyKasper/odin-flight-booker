@@ -1,26 +1,21 @@
 <h1>Amazing Flights</h1>
 
 <%= form_with url: '/flights', method: :get do |form| %>
-  <%# Make an (almost) vanilla html form for the departures %>
-  <label for="departure_airport">Departure Airport:</label>
-  <select name="departure_airport" id="departure_airport">
-    <% @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.code %></option>
-    <% end %>
-  </select><br>
-  <%# Make a Rails-way form for the arrivals %>
+  <%= form.label :departure_airport %>
+  <%= form.select :departure_airport, @airport_options%><br>
   <%= form.label :arrival_airport %>
   <%= form.select :arrival_airport, @airport_options %><br>
-
   <%= form.label :passenger_num %>
   <%= form.select :passenger_num, @passenger_num_options %><br>
-
-  <%= form.label :start, 'Departure date' %>
-  <%= form.select(:start, @departure_dates) %><br>
-
+  <%= form.label :start, 'Date' %>
+  <%= form.select :start, options_from_collection_for_select(@flights, 'start', :flight_date_formatted)%><br>
   <%= form.submit 'Search Flight'%>
-<% end %>
+<% end %><br><br>
 
-<% @available_flights.each do |flight| %>
-  <%= flight %>
+<% if @available_flights %>
+  <%= form_with url: '/bookings/new', method: :get do |form| %>
+    <%= form.label :selected_flight, 'Select Flight:'%><br>
+    <%= form.collection_radio_buttons :selected_flight, @available_flights_options, :last, :first%><br>
+    <%= form.submit%>
+  <% end %>
 <% end %>

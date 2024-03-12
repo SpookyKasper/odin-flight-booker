@@ -16,12 +16,13 @@ Airport.delete_all
 end
 
 
-flight_one = [1, 1, 2, DateTime.now + 10.days, 2.5]
-fligh_two = [2, 3, 5, DateTime.now + 20.days, 3.5]
+flight_one = [1, 1, 2, DateTime.now + 10.days + 2.hours, 2.5]
+fligh_two = [2, 3, 5, DateTime.now + 20.days + 47.minutes, 3.5]
 flight_three = [3, 2, 4, DateTime.now + 30.days, 2.5]
 fligh_four = [4, 4, 5, DateTime.now + 50.days, 2.5]
+flight_five = [5, 1, 2, DateTime.now + 10.days + 47.minutes, 3.5]
 
-flights = [flight_one, fligh_two, flight_three, fligh_four]
+flights = [flight_one, fligh_two, flight_three, fligh_four, flight_five]
 
 flights.each do |array|
   Flight.find_or_create_by!(
