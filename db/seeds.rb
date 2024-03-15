@@ -8,8 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Flight.delete_all
-Airport.delete_all
 
 [["NYC", 1], ["BER", 2], ["LSB",3], ["LDN", 4], ["SFA", 5]].each do |airport_code, id|
   Airport.find_or_create_by!(code: airport_code, id: id)

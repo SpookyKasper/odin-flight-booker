@@ -10,8 +10,4 @@ class FlightsController < ApplicationController
     @selected_passenger_num = params[:passenger_num]
     @available_flights_options = @available_flights.map { |af| [af.start.strftime("%Hh%m"), af.id] }
   end
-
-  def show
-  end
-
 end
