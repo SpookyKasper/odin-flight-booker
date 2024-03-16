@@ -14,10 +14,10 @@
  *= require_self
  */
 
-alert {
+.alert {
   color: red;
  }
 
- notice {
+.notice {
   color: green;
  }
