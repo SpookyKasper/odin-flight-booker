@@ -17,6 +17,6 @@
     <%= form.label :selected_flight, 'Select Flight:'%><br>
     <%= form.collection_radio_buttons :selected_flight, @available_flights_options, :last, :first%><br>
     <%= form.hidden_field :selected_passenger_num, value: @selected_passenger_num%>
-    <%= form.submit%>
+    <%= form.submit 'Select'%>
   <% end %>
 <% end %>

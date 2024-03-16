@@ -8,6 +8,6 @@ class FlightsController < ApplicationController
       arrival_airport_id: params[:arrival_airport]
     )
     @selected_passenger_num = params[:passenger_num]
-    @available_flights_options = @available_flights.map { |af| [af.start.strftime("%Hh%m"), af.id] }
+    @available_flights_options = @available_flights.map { |af| [af.flight_time_formatted, af.id] }
   end
 end
