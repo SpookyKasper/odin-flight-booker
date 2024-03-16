@@ -5,6 +5,12 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
+
+    if @passenger.save
+      flash[:notice] = 'Peak Time'
+    else
+      flash[:alert] = 'Shade'
+    end
   end
 
   private

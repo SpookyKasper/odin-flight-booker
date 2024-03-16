@@ -1,13 +1,14 @@
 class BookingsController < ApplicationController
   def new
     @flight = Flight.find(params[:selected_flight])
-    @booking = @flight.bookings.create
+    @booking = @flight.bookings.build
     @passenger_num = params[:selected_passenger_num].to_i
     @passenger_num.times { @booking.passengers.build }
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @flight = Flight.find(params[:booking][:flight])
+    @booking = @flight.bookings.build(booking_params)
 
     if @booking.save
       flash[:notice] = 'Booking completed ;)'

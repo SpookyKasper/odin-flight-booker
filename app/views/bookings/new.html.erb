@@ -1,15 +1,26 @@
-<h1>Bookings</h1>
+<h1>New Booking</h1>
 
 <%= form_with model: @booking do |form| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+      <ul>
+        <% @booking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   From: <%= @flight.departure_airport.code %> <br>
   To: <%= @flight.arrival_airport.code%><br>
   Date: <%= @flight.start.strftime("%d %b %Y") %><br><br>
   Info Passengers:<br>
-  <%= form.fields_for :passengers do |passenger_fields| %>
-    <%= passenger_fields.label :name %>
-    <%= passenger_fields.text_field :name %><br>
-    <%= passenger_fields.label :email %>
-    <%= passenger_fields.email_field :email %><br><br>
+  <%= form.hidden_field :flight, value: @booking.flight_id %>
+  <%= form.fields_for :passengers do |passenger_form| %>
+    <%= passenger_form.label :name %>
+    <%= passenger_form.text_field :name %><br>
+    <%= passenger_form.label :email %>
+    <%= passenger_form.email_field :email %><br><br>
   <% end %>
   <%= form.submit %>
 <% end %>
