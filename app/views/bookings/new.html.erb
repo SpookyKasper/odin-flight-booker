@@ -15,7 +15,7 @@
   To: <%= @flight.arrival_airport.code%><br>
   Date: <%= @flight.start.strftime("%d %b %Y") %><br><br>
   Info Passengers:<br>
-  <%= form.hidden_field :flight, value: @booking.flight_id %>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
   <%= form.fields_for :passengers do |passenger_form| %>
     <%= passenger_form.label :name %>
     <%= passenger_form.text_field :name %><br>
