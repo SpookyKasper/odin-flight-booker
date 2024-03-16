@@ -1,1 +1,24 @@
 <h1>My Booking</h1>
+
+
+<div class="booking_details">
+  <div class="flight_details">
+      <p><strong>Flight Details</strong></p>
+      <p>
+        From: <%= @flight.departure_airport.code %><br>
+        To: <%= @flight.arrival_airport.code %><br>
+        On the: <%= @flight.flight_date_formatted %><br>
+        At: <%= @flight.flight_time_formatted %><br>
+      </p>
+  </div>
+  <div class="passengers_details">
+    <p><strong>Passengers</strong></p>
+    <p>
+      <% @booking.passengers.each_with_index do |p, i| %>
+        Passenger num<%= i+1%><br>
+        Name: <%= p.name %><br>
+        Email: <%= p.email %><br>
+      <% end %>
+    </p>
+  </div>
+</div>

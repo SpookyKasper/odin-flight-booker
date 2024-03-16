@@ -7,4 +7,8 @@ class Flight < ApplicationRecord
   def flight_date_formatted
     start.strftime("%Y.%m.%d")
   end
+
+  def flight_time_formatted
+    start.strftime("%Hh%M")
+  end
 end
