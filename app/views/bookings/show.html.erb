@@ -11,14 +11,15 @@
         At: <%= @flight.flight_time_formatted %><br>
       </p>
   </div>
-  <div class="passengers_details">
-    <p><strong>Passengers</strong></p>
-    <p>
+  <div class="passengers_details" data-controller='passengers'>
+    <div data-passengers-target='passengersList'>
+      <p><strong>Passengers</strong></p>
       <% @booking.passengers.each_with_index do |p, i| %>
         Passenger num<%= i+1%><br>
         Name: <%= p.name %><br>
         Email: <%= p.email %><br>
       <% end %>
-    </p>
+    </div>
+    <button data-action='passengers#add'>Add Passenger</button>
   </div>
 </div>

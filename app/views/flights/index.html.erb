@@ -12,7 +12,7 @@
   <%= form.submit 'Search Flight'%>
 <% end %><br><br>
 
-<% if @available_flights %>
+<% if @available_flights.size > 0 %>
   <%= form_with url: '/bookings/new', method: :get do |form| %>
     <%= form.label :selected_flight, 'Select Flight:'%><br>
     <%= form.collection_radio_buttons :selected_flight, @available_flights_options, :last, :first%><br>
