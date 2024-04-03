@@ -1,6 +1,7 @@
 <h1>New Booking</h1>
 
 <%= form_with model: @booking do |form| %>
+  <%# Error Messages %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -11,16 +12,28 @@
       </ul>
     </div>
   <% end %>
+  <%# Flight Infos %>
   From: <%= @flight.departure_airport.code %> <br>
   To: <%= @flight.arrival_airport.code%><br>
   Date: <%= @flight.start.strftime("%d %b %Y") %><br><br>
-  Info Passengers:<br>
-  <%= form.hidden_field :flight_id, value: @flight.id %>
-  <%= form.fields_for :passengers do |passenger_form| %>
-    <%= passenger_form.label :name %>
-    <%= passenger_form.text_field :name %><br>
-    <%= passenger_form.label :email %>
-    <%= passenger_form.email_field :email %><br><br>
-  <% end %>
-  <%= form.submit %>
+  <%# Passengers stuff %>
+  <div data-controller='passengers' data-passengers-pass-value='<%= @passenger_num %>'>
+    <button data-action='passengers#add' data-passengers-target='addButton'>Add Passenger</button><br>
+    Info Passengers:<br>
+      <%= form.hidden_field :flight_id, value: @flight.id %>
+        <%= form.fields_for :passengers do |passenger_form| %>
+          <%= passenger_form.label :name %>
+          <%= passenger_form.text_field :name %><br>
+          <%= passenger_form.label :email %>
+          <%= passenger_form.email_field :email %><br><br>
+        <template data-passengers-target='newPassenger'>
+          <label for="booking_passengers_attributes_<%= @passengers_num %>_name">Name</label>
+          <input type="text" name="booking[passengers_attributes][<%= @passenger_num %>][name]" id="booking_passengers_attributes_<%= @passenger_num %>_name"><br>
+          <label for="booking_passengers_attributes_<%= @passengers_num %>_email">Email</label>
+          <input type="email" name="booking[passengers_attributes][<%= @passenger_num %>][email]" id="booking_passengers_attributes_<%= @passenger_num %>_email"><br><br>
+        </template>
+        <div data-passengers-target='passengersList'></div>
+      <% end %>
+      <%= form.submit %>
+  </div>
 <% end %>
