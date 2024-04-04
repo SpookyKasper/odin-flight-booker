@@ -25,9 +25,6 @@ class BookingsController < ApplicationController
     @passengers = @booking.passengers
   end
 
-  def edit
-  end
-
   private
 
   def booking_params

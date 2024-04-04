@@ -4,9 +4,6 @@ export default class extends Controller {
   static targets = [ 'passengersList', 'newPassenger', 'fields']
   static values = { pass: Number }
 
-  connect() {
-  }
-
   add(event) {
     event.preventDefault()
     const template = this.newPassengerTarget
@@ -20,6 +17,7 @@ export default class extends Controller {
     const labels = clone.querySelectorAll('label')
     labels[0].setAttribute("for", `booking_passengers_attributes_${this.passValue}_name`)
     labels[1].setAttribute("for", `booking_passengers_attributes_${this.passValue}_email`)
+
     const inputs = clone.querySelectorAll('input')
     inputs[0].setAttribute("id", `booking_passengers_attributes_${this.passValue}_name`)
     inputs[1].setAttribute("id", `booking_passengers_attributes_${this.passValue}_email`)
@@ -30,11 +28,7 @@ export default class extends Controller {
   remove(event) {
     event.preventDefault()
     const passengers = this.fieldsTargets
-    if (passengers.length < 2) {
-      this.alert()
-    } else {
-      this.removeLastPassenger(passengers)
-    }
+    passengers.length < 2 ? this.alert() : this.removeLastPassenger(passengers)
   }
 
   removeLastPassenger(passengers) {
