@@ -30,7 +30,20 @@ export default class extends Controller {
   remove(event) {
     event.preventDefault()
     const passengers = this.fieldsTargets
+    if (passengers.length < 2) {
+      this.alert()
+    } else {
+      this.removeLastPassenger(passengers)
+    }
+  }
+
+  removeLastPassenger(passengers) {
     let lastFields = passengers.pop()
     this.passengersListTarget.removeChild(lastFields)
+    this.passValue--
+  }
+
+  alert() {
+    alert(`At lease one passenger per booking`)
   }
 }
