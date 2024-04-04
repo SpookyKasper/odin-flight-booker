@@ -1,20 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ 'passengersList', 'newPassenger']
+  static targets = [ 'passengersList', 'newPassenger', 'fields']
   static values = { pass: Number }
 
   connect() {
-    console.log(this.passValue)
   }
 
   add(event) {
     event.preventDefault()
     const template = this.newPassengerTarget
     const clone = template.content.cloneNode(true)
-    console.log(this.passValue)
     this.updateClone(clone)
-    console.log(this.passengersListTarget)
     this.passengersListTarget.appendChild(clone)
     this.passValue++
   }
@@ -32,11 +29,8 @@ export default class extends Controller {
 
   remove(event) {
     event.preventDefault()
-    const element = this.passengersListTarget
-    const passengers = element.querySelectorAll('.passenger-fields')
-    console.log(passengers)
-    console.log
-    const lastPassenger = this.passengersListTargets.pop()
-    this.passengersListTarget.removeChild(lastPassenger)
+    const passengers = this.fieldsTargets
+    let lastFields = passengers.pop()
+    this.passengersListTarget.removeChild(lastFields)
   }
 }

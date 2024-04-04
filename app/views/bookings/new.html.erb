@@ -24,15 +24,19 @@
       <%= form.hidden_field :flight_id, value: @flight.id %>
       <div data-passengers-target='passengersList'>
         <%= form.fields_for :passengers do |passenger_form| %>
-          <%= passenger_form.label :name %>
-          <%= passenger_form.text_field :name %><br>
-          <%= passenger_form.label :email %>
-          <%= passenger_form.email_field :email %><br><br>
+          <div data-passengers-target='fields'>
+            <%= passenger_form.label :name %>
+            <%= passenger_form.text_field :name %><br>
+            <%= passenger_form.label :email %>
+            <%= passenger_form.email_field :email %><br><br>
+          </div>
         <template data-passengers-target='newPassenger'>
-          <%= passenger_form.label :name %>
-          <%= passenger_form.text_field :name %><br>
-          <%= passenger_form.label :email %>
-          <%= passenger_form.email_field :email %><br><br>
+          <div data-passengers-target='fields'>
+            <%= passenger_form.label :name %>
+            <%= passenger_form.text_field :name %><br>
+            <%= passenger_form.label :email %>
+            <%= passenger_form.email_field :email %><br><br>
+          </div>
         </template>
         <% end %>
       </div>
