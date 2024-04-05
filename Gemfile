@@ -29,6 +29,9 @@ gem "jbuilder"
 # User postrgresql database
 gem 'pg'
 
+# Show emails in broswer
+gem "letter_opener"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

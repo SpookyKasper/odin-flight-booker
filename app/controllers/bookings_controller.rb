@@ -11,7 +11,9 @@ class BookingsController < ApplicationController
     @booking = @flight.bookings.build(booking_params)
 
     if @booking.save
-      flash[:notice] = 'Booking completed ;)'
+      PassengerMailer.with(booking: @booking).confirmation_email.deliver_now
+
+      flash[:notice] = 'Well done !'
       redirect_to @booking
     else
       flash[:alert] = 'Problem when saving the booking'
